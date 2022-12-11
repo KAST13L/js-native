@@ -1,7 +1,8 @@
-let numbersArray = [11, 32, 0, -2, 14, 1000]
+let numbersArray = [10, 30, 0, -20, 99, 1000]
 let stringsArray = ['hello', 'world', 'Glory', 'Ukraine', 'freedom']
 
-Array.prototype.simpleMap = (arr, fn) => {
+Array.prototype.simpleMap = function (fn) {
+    let arr = this
     let res = []
     for (let i = 0; i < arr.length; i++) {
         res[i] = fn(arr[i])
@@ -9,7 +10,7 @@ Array.prototype.simpleMap = (arr, fn) => {
     return res
 }
 
-console.log(numbersArray.simpleMap(numbersArray, e => e + 1))
+console.log(numbersArray.simpleMap(e => e + 1))
 
 Array.prototype.simpleFilter = (arr, fn) => {
     let res = []
@@ -20,22 +21,27 @@ Array.prototype.simpleFilter = (arr, fn) => {
     }
     return res
 }
+console.log(stringsArray.simpleFilter(stringsArray, e => e !== 'world'))
 
-const simpleFind = (arr, fn) => {
+Array.prototype.simpleFind = (arr, fn) => {
     for (let i = 0; i < arr.length; i++) {
         if (fn(arr[i])) {
             return arr[i]
         }
     }
 }
+console.log(numbersArray.simpleFind(numbersArray, e => e === 1002))
 
-const simpleJoin = (arr, sep = ',') => {
+Array.prototype.simpleJoin = (arr, sep = ',') => {
     let res = '';
     for (let i = 0; i < arr.length; i++) {
         res = (arr.length - 1 > i) ? res += arr[i] + sep : res += arr[i]
     }
     return res
 }
+
+
+
 
 function abbrevName(name) {
     return name.split(" ").map(el => el[0].toUpperCase()).join(".")
