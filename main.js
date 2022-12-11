@@ -1,4 +1,7 @@
-const simpleMap = (arr, fn) => {
+let numbersArray = [11, 32, 0, -2, 14, 1000]
+let stringsArray = ['hello', 'world', 'Glory', 'Ukraine', 'freedom']
+
+Array.prototype.simpleMap = (arr, fn) => {
     let res = []
     for (let i = 0; i < arr.length; i++) {
         res[i] = fn(arr[i])
@@ -6,7 +9,9 @@ const simpleMap = (arr, fn) => {
     return res
 }
 
-const simpleFilter = (arr, fn) => {
+console.log(numbersArray.simpleMap(numbersArray, e => e + 1))
+
+Array.prototype.simpleFilter = (arr, fn) => {
     let res = []
     for (let i = 0; i < arr.length; i++) {
         if (fn(arr[i])) {
