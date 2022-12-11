@@ -1,6 +1,7 @@
 let numbersArray = [10, 30, 0, -20, 99, 1000]
 let stringsArray = ['hello', 'world', 'Glory', 'Ukraine', 'freedom']
 
+// map
 Array.prototype.simpleMap = function (fn) {
     let arr = this
     let res = []
@@ -9,10 +10,11 @@ Array.prototype.simpleMap = function (fn) {
     }
     return res
 }
-
 console.log(numbersArray.simpleMap(e => e + 1))
 
-Array.prototype.simpleFilter = (arr, fn) => {
+// filter
+Array.prototype.simpleFilter = function (fn) {
+    let arr = this
     let res = []
     for (let i = 0; i < arr.length; i++) {
         if (fn(arr[i])) {
@@ -21,17 +23,30 @@ Array.prototype.simpleFilter = (arr, fn) => {
     }
     return res
 }
-console.log(stringsArray.simpleFilter(stringsArray, e => e !== 'world'))
+console.log(numbersArray.simpleFilter(e => e < 55))
 
-Array.prototype.simpleFind = (arr, fn) => {
+// find
+Array.prototype.simpleFind = function (fn) {
+    let arr = this
     for (let i = 0; i < arr.length; i++) {
         if (fn(arr[i])) {
             return arr[i]
         }
     }
 }
-console.log(numbersArray.simpleFind(numbersArray, e => e === 1002))
+console.log(numbersArray.simpleFind(e => e === 1000))
 
+// forEach
+Array.prototype.simpleForEach = function (fn){
+    let arr = this
+    for (let i = 0; i < arr.length; i++) {
+        fn(arr[i])
+    }
+    return undefined
+}
+console.log(numbersArray.simpleForEach(e => console.log(e + 1)))
+
+// join
 Array.prototype.simpleJoin = (arr, sep = ',') => {
     let res = '';
     for (let i = 0; i < arr.length; i++) {
@@ -113,8 +128,4 @@ function sumTo(n) {
     return n === 1 ? 1 : n + sumTo(n - 1)
 }
 //console.log(sumTo(7))
-
-
-
-
 
